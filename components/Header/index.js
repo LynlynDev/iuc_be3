@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: {
     backgroundColor: '#FF8C00',
-    display: 'flex-direction',
+    display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     padding: theme.spacing(0, 1),
@@ -46,6 +46,16 @@ const useStyles = makeStyles((theme) => ({
       right: theme.spacing(2),
     },
   },
+  listItem: {
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
+  },
+  listItemMobile: {
+    [theme.breakpoints.up('md')]: {
+      display: 'none',
+    },
+  },
 }));
 
 const NavBar = () => {
@@ -62,7 +72,7 @@ const NavBar = () => {
         <h1 style={{ color: '#FFF' }}>CSI ALIMENTAIRE</h1>
       </div>
       <List>
-        <ListItem button>
+        <ListItem button className={classes.listItem}>
           <ListItemIcon>
             <InboxIcon />
           </ListItemIcon>
@@ -74,13 +84,13 @@ const NavBar = () => {
           </ListItemIcon>
           <ListItemText primary="Menus" />
         </ListItem>
-        <ListItem button>
+        <ListItem button className={classes.listItem}> 
           <ListItemIcon>
             <MailIcon />
           </ListItemIcon>
           <ListItemText primary="Réserver une table" />
         </ListItem>
-        <ListItem button>
+        <ListItem button className={classes.listItem}>
           <ListItemIcon>
             <MailIcon />
           </ListItemIcon>
@@ -106,10 +116,18 @@ const NavBar = () => {
         className={classes.button}
         onClick={handleDrawerToggle}
         variant="contained"
-        color="secondary"
-      >
+        color="secondary">
         Menu
       </Button>
+
+      <nav className={classes.listItemMobile} aria-label="menu de navigation">
+        <Drawer
+          variant="temporary"
+          anchor="right"
+          open={mobileOpen}>
+          </Drawer>
+          </nav>
+          
       <main className={classes.content}>
         <div className={classes.toolbar} />
         {/* contenu de votre page */}
